@@ -1,25 +1,19 @@
 plugins {
     id 'org.springframework.boot' version '2.5.3'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.misobuild'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-
     // JWT Token
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation 'org.json:json:20210307'
@@ -41,8 +35,30 @@ dependencies {
 
     //Swagger
     implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+
+    // Querydsl 추가
+    implementation 'com.querydsl:querydsl-jpa'
 }
 
 test {
     useJUnitPlatform()
+}
+
+// Querydsl
+def querydslDir = "$buildDir/generated/querydsl"
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+sourceSets {
+    main.java.srcDir querydslDir
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
 }
