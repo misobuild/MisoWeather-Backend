@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import static com.misobuild.domain.member.QMember.member;
 
-public class MemberRepositoryImpl implements MemberRepositoryQuerydsl {
+public class MemberRepositoryImpl implements MemberRepositoryQueryDsl {
 
     private final JPAQueryFactory queryFactory;
 
