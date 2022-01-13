@@ -4,11 +4,12 @@ spring:
 #    show-sql: true
     hibernate:
       #Switching
-      ddl-auto: create-drop
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
         use_sql_comments: false
+    database: h2
 
   profiles:
     include: secret
