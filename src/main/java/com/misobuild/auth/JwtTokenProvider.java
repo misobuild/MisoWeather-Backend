@@ -23,10 +23,7 @@ public class JwtTokenProvider {
 
     @Value("${app.auth.tokenSecret}")
     private String secretKey;
-
-    // 토큰 유효시간 360분 , 1L = 1ms
     private static final long TOKEN_VALID_TIME = 360 * 60 * 1000L;
-
     private final UserDetailsService userDetailsService;
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
@@ -36,11 +33,10 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String userPk, String email, String name, String picture) {
-        Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
-        claims.put("email", email); // 정보는 key / value 쌍으로 저장된다.
-        claims.put("name", name);
-        claims.put("picture",picture);
+    public String createToken(String memberId, String socialId, String socialType) {
+        Claims claims = Jwts.claims().setSubject(memberId); // JWT payload 에 저장되는 정보단위
+        claims.put("socialId", socialId); // 정보는 key / value 쌍으로 저장된다.
+        claims.put("socialType", socialType);
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장
@@ -62,7 +58,7 @@ public class JwtTokenProvider {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
-    // Request의 Header에서 token 값을 가져옵니다. "TOKEN" : "TOKEN값"
+    // Request의 Header에서 token 값을 가져옵니다. "TOKEN" : "TOKEN 값"
     //////// FrontEnd와 약속해서 일치시켜야 하는 부분 /////////'
     public String resolveToken(HttpServletRequest request) {
         return request.getHeader("TOKEN");

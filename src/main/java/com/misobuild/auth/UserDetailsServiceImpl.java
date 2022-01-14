@@ -1,7 +1,7 @@
 package com.misobuild.auth;
 
-import com.misobuild.domain.Member;
-import com.misobuild.domain.MemberRepository;
+import com.misobuild.domain.member.Member;
+import com.misobuild.domain.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

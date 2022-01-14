@@ -1,6 +1,6 @@
 package com.misobuild.auth;
 
-import com.misobuild.domain.Member;
+import com.misobuild.domain.member.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
