@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @DynamicUpdate
-@Entity
+@Entity(name = "MEMBER_TB")
 public class Member extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
