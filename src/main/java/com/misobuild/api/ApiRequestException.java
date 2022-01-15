@@ -1,4 +1,4 @@
-package com.misobuild.exception;
+package com.misobuild.api;
 
 public class ApiRequestException extends IllegalArgumentException {
 

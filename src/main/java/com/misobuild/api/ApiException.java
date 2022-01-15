@@ -1,4 +1,4 @@
-package com.misobuild.exception;
+package com.misobuild.api;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -15,5 +15,4 @@ public class ApiException {
         this.message = message;
         this.httpStatus = httpStatus;
     }
-
 }

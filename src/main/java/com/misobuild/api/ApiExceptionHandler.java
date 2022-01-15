@@ -1,4 +1,4 @@
-package com.misobuild.exception;
+package com.misobuild.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
