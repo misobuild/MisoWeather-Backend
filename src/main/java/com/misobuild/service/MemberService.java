@@ -4,7 +4,7 @@ import com.misobuild.auth.JwtTokenProvider;
 import com.misobuild.domain.member.Member;
 import com.misobuild.domain.member.MemberRepository;
 import com.misobuild.dto.request.member.SignUpRequestDto;
-import com.misobuild.exception.ApiRequestException;
+import com.misobuild.api.ApiRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,7 @@ public class MemberService {
         String socialType = signUpRequestDto.getSocialType();
 
         memberRepository.findBySocialIdAndSocialType(socialId, socialType)
-                .ifPresent( m -> {
-                    throw new ApiRequestException("이미 가입한 회원입니다.");
-                });
+                .ifPresent( m -> { throw new ApiRequestException("이미 가입한 회원입니다."); });
 
         Member member = new Member(socialId, socialType, "nickname");
 
