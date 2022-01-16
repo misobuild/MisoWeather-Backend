@@ -1,23 +1,16 @@
 spring:
-
   jpa:
 #    show-sql: true
     hibernate:
       #Switching
-      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
         use_sql_comments: false
-    database: h2
+    database: mysql
 
   profiles:
     include: secret
-
-
-#Switching
-  datasource:
-    driverClassName: org.h2.Driver
-    hikari:
-      jdbc-url: jdbc:h2:./testDB;AUTO_SERVER=TRUE
-      username: sa
