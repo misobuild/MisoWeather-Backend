@@ -27,10 +27,14 @@ public class Member extends Timestamped {
     @Column(name = "NICKNAME")
     private String nickname;
 
+    @Column(name = "MEMBER_EMOJI")
+    private String emoji;
+
     @Builder
-    public Member(String socialId, String socialType, String nickname) {
+    public Member(String socialId, String socialType, String nickname, String emoji, Long defaultRegion) {
         this.socialId = socialId;
         this.socialType = socialType;
         this.nickname = nickname;
+        this.emoji = emoji;
     }
 }
