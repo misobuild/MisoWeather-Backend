@@ -17,13 +17,13 @@ public class Region {
     @Column(name = "REGION_ID")
     private Long id;
 
-    @Column(name = "BIGSCALE", nullable = false, columnDefinition = "varcahr(45)")
+    @Column(name = "BIGSCALE", nullable = false, columnDefinition = "varchar(45)")
     private String bigScale;
 
-    @Column(name = "MIDSCALE", nullable = false, columnDefinition = "varcahr(45)")
+    @Column(name = "MIDSCALE", nullable = false, columnDefinition = "varchar(45)")
     private String midScale;
 
-    @Column(name = "SMALLSCALE", nullable = false, columnDefinition = "varcahr(45)")
+    @Column(name = "SMALLSCALE", nullable = false, columnDefinition = "varchar(45)")
     private String smallScale;
 
     @Column(name = "LOCATION_X", nullable = false, columnDefinition = "integer")
