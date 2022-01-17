@@ -1,18 +1,15 @@
 package com.misobuild.api;
 
-import lombok.Builder;
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
 @Getter
-public class ApiException {
+public class ApiException extends RuntimeException {
 
-    private final String message;
-    private final HttpStatus httpStatus;
+    private final HttpStatusEnum httpStatusEnum;
 
-    @Builder
-    public ApiException(String message, HttpStatus httpStatus){
-        this.message = message;
-        this.httpStatus = httpStatus;
+    public ApiException(HttpStatusEnum httpStatusEnum){
+        super(httpStatusEnum.getMessage());
+        this.httpStatusEnum = httpStatusEnum;
     }
+
 }

@@ -1,20 +1,31 @@
 package com.misobuild.api;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestControllerAdvice
+@ControllerAdvice
 public class ApiExceptionHandler {
-    @ExceptionHandler(value = {ApiRequestException.class})
-    public ResponseEntity<Object> handle(ApiRequestException ex) {
 
-        ApiException apiException = ApiException.builder()
-                                        .httpStatus(HttpStatus.BAD_REQUEST)
-                                        .message(ex.getMessage())
-                                        .build();
+    @ResponseBody
+    @org.springframework.web.bind.annotation.ExceptionHandler(ApiException.class)
+    public ResponseEntity<Error> exception(ApiException exception){
+        return new ResponseEntity<>(Error.create(exception.getHttpStatusEnum()), HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    static class Error{
+        private int httpStatus;
+        private String message;
+
+        static Error create(HttpStatusEnum exception){
+            return new Error(exception.getStatusCode(), exception.getMessage());
+        }
     }
 }
