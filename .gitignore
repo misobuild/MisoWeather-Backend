@@ -12,11 +12,6 @@ build/
 !**/src/main/java/com/misobuild/exception
 !**/src/main/java/com/misobuild/utils
 
-### Test ###
-testDB.mv.db
-testDB.trace.db
-testDB.lock.db
-
 ### STS ###
 .apt_generated
 .classpath
