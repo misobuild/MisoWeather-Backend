@@ -1,4 +1,4 @@
-package com.misobuild.domain.member_region_mapping;
+package com.misobuild.constants;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

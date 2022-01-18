@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
-public class ApiExceptionHandler {
+public class ControllerExceptionHandler {
 
     @ResponseBody
-    @org.springframework.web.bind.annotation.ExceptionHandler(ApiException.class)
-    public ResponseEntity<Error> exception(ApiException exception){
+    @org.springframework.web.bind.annotation.ExceptionHandler(ApiCustomException.class)
+    public ResponseEntity<Error> exception(ApiCustomException exception){
         return new ResponseEntity<>(Error.create(exception.getHttpStatusEnum()), HttpStatus.OK);
     }
 
@@ -25,7 +25,7 @@ public class ApiExceptionHandler {
         private String message;
 
         static Error create(HttpStatusEnum exception){
-            return new Error(exception.getStatusCode(), exception.getMessage());
+            return new ControllerExceptionHandler.Error(exception.getStatusCode(), exception.getMessage());
         }
     }
 }
