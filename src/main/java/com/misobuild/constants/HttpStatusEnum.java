@@ -1,4 +1,4 @@
-package com.misobuild.api;
+package com.misobuild.constants;
 
 import lombok.Getter;
 
