@@ -1,5 +1,6 @@
-package com.misobuild.api;
+package com.misobuild.exception;
 
+import com.misobuild.constants.HttpStatusEnum;
 import lombok.Getter;
 
 @Getter

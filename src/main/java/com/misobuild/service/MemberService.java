@@ -8,7 +8,7 @@ import com.misobuild.domain.member.Member;
 import com.misobuild.domain.member.MemberRepository;
 import com.misobuild.domain.member_region_mapping.MemberRegionMapping;
 import com.misobuild.domain.member_region_mapping.MemberRegionMappingRepository;
-import com.misobuild.domain.member_region_mapping.RegionStatus;
+import com.misobuild.domain.member_region_mapping.RegionEnum;
 import com.misobuild.domain.nickname.*;
 import com.misobuild.domain.region.Region;
 import com.misobuild.domain.region.RegionRepository;
@@ -88,7 +88,7 @@ public class MemberService {
                 .orElseThrow(() -> new ApiException(HttpStatusEnum.NOT_FOUND));
 
         MemberRegionMapping memberRegionMapping = MemberRegionMapping.builder()
-                .regionStatus(RegionStatus.DEFAULT)
+                .regionEnum(RegionEnum.DEFAULT)
                 .member(member)
                 .region(defaultRegion)
                 .build();

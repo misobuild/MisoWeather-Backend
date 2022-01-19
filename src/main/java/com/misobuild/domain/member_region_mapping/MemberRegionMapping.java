@@ -22,7 +22,7 @@ public class MemberRegionMapping {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "STATUS")
-    private RegionStatus regionStatus;
+    private RegionEnum regionEnum;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "MEMBER_ID")
@@ -33,8 +33,8 @@ public class MemberRegionMapping {
     private Region region;
 
     @Builder
-    public MemberRegionMapping(RegionStatus regionStatus, Member member, Region region ) {
-        this.regionStatus = regionStatus;
+    public MemberRegionMapping(RegionEnum regionEnum, Member member, Region region ) {
+        this.regionEnum = regionEnum;
         this.member = member;
         this.region = region;
     }
