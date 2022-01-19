@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum RegionStatus {
+public enum RegionEnum {
 
     DEFAULT("DEFAULT","기본 지역"),
     NORMAL("ADDED","추가 지역");
