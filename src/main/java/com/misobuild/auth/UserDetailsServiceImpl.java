@@ -13,12 +13,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private MemberRepository memberRepository;
 
-    //이름은 loadByUsername이지만
-    // OAuth2 방식으로 구현할때 유니크 값은 userId이다.
-    public UserDetails loadUserByUsername(String userPk) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userPk){
         Member member = memberRepository.findById(Long.parseLong(userPk))
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find " + userPk));
-
+                .orElseThrow(() -> new UsernameNotFoundException("NOTFOUND"));
         return new com.misobuild.auth.UserDetailsImpl(member);
     }
 }
