@@ -1,7 +1,7 @@
 package com.misobuild.auth;
 
-import com.misobuild.api.ApiException;
-import com.misobuild.api.HttpStatusEnum;
+import com.misobuild.exception.ApiCustomException;
+import com.misobuild.constants.HttpStatusEnum;
 import org.json.JSONObject;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -34,7 +34,7 @@ public class KakaoOAuth {
             body = new JSONObject(response.getBody());
         }
         catch (HttpClientErrorException e){
-            throw new ApiException(HttpStatusEnum.valueOf(HttpStatus.valueOf(e.getRawStatusCode()).name()));
+            throw new ApiCustomException(HttpStatusEnum.valueOf(HttpStatus.valueOf(e.getRawStatusCode()).name()));
         }
 
         return body.getLong("id");
