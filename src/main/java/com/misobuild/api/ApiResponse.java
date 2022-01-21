@@ -1,5 +1,6 @@
 package com.misobuild.api;
 
+import com.misobuild.constants.HttpStatusEnum;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Getter;
 public class ApiResponse {
 
     @ApiModelProperty(example = "OK")
-    private HttpStatusEnum httpStatus;
+    private HttpStatusEnum status;
 
     @ApiModelProperty(example = "행복하세요")
     private String message;
