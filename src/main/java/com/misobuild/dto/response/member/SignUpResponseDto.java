@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SignUpResponseDto {
-    private String TOKEN;
+    private String socialToken;
 }
 
