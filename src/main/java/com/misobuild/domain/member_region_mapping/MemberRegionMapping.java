@@ -1,5 +1,6 @@
 package com.misobuild.domain.member_region_mapping;
 
+import com.misobuild.constants.RegionEnum;
 import com.misobuild.domain.member.Member;
 import com.misobuild.domain.region.Region;
 import lombok.Builder;
@@ -22,7 +23,7 @@ public class MemberRegionMapping {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "STATUS")
-    private RegionEnum regionEnum;
+    private RegionEnum regionStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "MEMBER_ID")
@@ -33,9 +34,14 @@ public class MemberRegionMapping {
     private Region region;
 
     @Builder
-    public MemberRegionMapping(RegionEnum regionEnum, Member member, Region region ) {
-        this.regionEnum = regionEnum;
+    public MemberRegionMapping(RegionEnum regionStatus, Member member, Region region ) {
+        this.regionStatus = regionStatus;
         this.member = member;
         this.region = region;
+    }
+
+    public MemberRegionMapping update(Region region){
+        this.region = region;
+        return this;
     }
 }
