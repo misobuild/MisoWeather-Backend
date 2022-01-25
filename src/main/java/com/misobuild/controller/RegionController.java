@@ -1,7 +1,7 @@
 package com.misobuild.controller;
 
 import com.misobuild.api.ApiResponseWithData;
-import com.misobuild.api.HttpStatusEnum;
+import com.misobuild.constants.HttpStatusEnum;
 import com.misobuild.dto.response.region.RegionResponseDto;
 import com.misobuild.service.RegionService;
 import io.swagger.annotations.*;
@@ -23,7 +23,7 @@ public class RegionController {
     @GetMapping("/api/region/{bigScaleRegion}")
     public ResponseEntity<ApiResponseWithData<RegionResponseDto>> getMidScaleList(@PathVariable(name = "bigScaleRegion") String bigScaleRegion) {
         return ResponseEntity.ok(ApiResponseWithData.<RegionResponseDto>builder()
-                .httpStatus(HttpStatusEnum.OK)
+                .status(HttpStatusEnum.OK)
                 .data(regionService.getMidScaleList(bigScaleRegion))
                 .message("생성 성공")
                 .build());
@@ -37,7 +37,7 @@ public class RegionController {
     @GetMapping("/api/region/{bigScaleRegion}/{midScaleRegion}")
     public ResponseEntity<ApiResponseWithData<RegionResponseDto>> getSmallScaleList(@PathVariable(name = "bigScaleRegion") String bigScaleRegion, @PathVariable(name = "midScaleRegion") String midScaleRegion) {
         return ResponseEntity.ok(ApiResponseWithData.<RegionResponseDto>builder()
-                .httpStatus(HttpStatusEnum.OK)
+                .status(HttpStatusEnum.OK)
                 .message("bigScale과 midScale로 찾아온 smallScale 리스트")
                 .data(regionService.getSmallScaleList(bigScaleRegion, midScaleRegion))
                 .build());
