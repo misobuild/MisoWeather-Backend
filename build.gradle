@@ -38,6 +38,13 @@ dependencies {
 
     // Querydsl 추가
     implementation 'com.querydsl:querydsl-jpa'
+
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'com.nimbusds:nimbus-jose-jwt:9.15.2'
+    compile 'org.apache.httpcomponents:httpclient:4.5.13'
+
+    //redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 }
 
 test {
