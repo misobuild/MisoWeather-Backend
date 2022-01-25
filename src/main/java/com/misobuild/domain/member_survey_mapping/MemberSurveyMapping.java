@@ -1,4 +1,4 @@
-package com.misobuild.domain.member.member_survey_mapping;
+package com.misobuild.domain.member_survey_mapping;
 
 import com.misobuild.domain.Timestamped;
 import com.misobuild.domain.member.Member;
