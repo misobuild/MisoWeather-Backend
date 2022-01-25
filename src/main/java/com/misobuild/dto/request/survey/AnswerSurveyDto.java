@@ -1,4 +1,4 @@
-package com.misobuild.dto.request.member.survey;
+package com.misobuild.dto.request.survey;
 
 import com.sun.istack.NotNull;
 import io.swagger.annotations.ApiModelProperty;
