@@ -1,4 +1,4 @@
-package com.misobuild.utils.builder;
+package com.misobuild.utils.builder.weather;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
