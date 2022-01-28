@@ -1,6 +1,6 @@
 package com.misobuild.utils.validator;
 
-import com.misobuild.utils.caller.KakaoAuthCaller;
+import com.misobuild.utils.caller.oauth.KakaoAuthCaller;
 import lombok.AllArgsConstructor;
 import org.json.JSONObject;
 

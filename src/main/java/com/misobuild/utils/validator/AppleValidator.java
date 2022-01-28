@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.misobuild.constants.HttpStatusEnum;
 import com.misobuild.exception.ApiCustomException;
-import com.misobuild.utils.caller.AppleAuthCaller;
+import com.misobuild.utils.caller.oauth.AppleAuthCaller;
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jose.jwk.JWK;
