@@ -23,28 +23,38 @@ public class ForecastController {
 
     private final WeatherService weatherService;
 
-    // 기상청 api 조회
-    @Deprecated
-    @ApiOperation(value = "단기예보 간략 정보")
-    @GetMapping("/api/forecast/{regionId}")
-    public ResponseEntity<ApiResponseWithData<ForecastNowDto>>
-    getForecastNow(@PathVariable Long regionId) throws IOException {
-        return ResponseEntity.ok(ApiResponseWithData.<ForecastNowDto>builder()
+    // OpenWeatherMap api 조회
+    @ApiOperation(value = "현재 날씨")
+    @GetMapping("/api/new-forecast/{regionId}")
+    public ResponseEntity<ApiResponseWithData<CurrentWeatherDto>>
+    getCurrentWeather(@PathVariable Long regionId) throws IOException {
+        weatherService.update(regionId);
+        return ResponseEntity.ok(ApiResponseWithData.<CurrentWeatherDto>builder()
                 .status(HttpStatusEnum.OK)
-                .data(weatherService.getForecastNow(regionId))
+                .data(weatherService.getCurrentWeather(regionId))
                 .message("생성 성공")
                 .build());
     }
 
-    // 기상청 api 조회
-    @Deprecated
-    @ApiOperation(value = "단기예보 세부 정보")
-    @GetMapping("/api/forecast/{regionId}/detail")
-    public ResponseEntity<ApiResponseWithData<ForecastDto>>
-    getForecastDetail(@PathVariable Long regionId) throws IOException {
-        return ResponseEntity.ok(ApiResponseWithData.<ForecastDto>builder()
+    // 오픈웨더
+    @ApiOperation(value = "시간 별 예보")
+    @GetMapping("/api/new-forecast/hourly/{regionId}")
+    public ResponseEntity<ApiResponseWithData<HourlyForecastDto>>
+    getHourlyForecast(@PathVariable Long regionId) {
+        return ResponseEntity.ok(ApiResponseWithData.<HourlyForecastDto>builder()
                 .status(HttpStatusEnum.OK)
-                .data(weatherService.getForecastDetail(regionId))
+                .data(weatherService.getHourlyForecast(regionId))
+                .message("생성 성공")
+                .build());
+    }
+
+    @ApiOperation(value = "일 별 예보")
+    @GetMapping("/api/new-forecast/daily/{regionId}")
+    public ResponseEntity<ApiResponseWithData<DailyForecastDto>>
+    getDailyForecast(@PathVariable Long regionId) {
+        return ResponseEntity.ok(ApiResponseWithData.<DailyForecastDto>builder()
+                .status(HttpStatusEnum.OK)
+                .data(weatherService.getDailyForecast(regionId))
                 .message("생성 성공")
                 .build());
     }
