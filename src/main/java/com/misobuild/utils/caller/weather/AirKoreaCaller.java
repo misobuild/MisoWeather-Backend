@@ -43,20 +43,6 @@ public class AirKoreaCaller implements ApiCaller {
             throw new ApiCustomException(HttpStatusEnum
                     .valueOf(HttpStatus.valueOf(e.getRawStatusCode()).name()));
         }
-
-
-//        try {
-//            Object response = airKoreaBuilder.restTemplate.getForObject(
-//                    uri,
-//                    String.class);
-//            return new JSONObject(response);
-//        } catch (HttpClientErrorException e) {
-//            throw new ApiCustomException(HttpStatusEnum
-//                    .valueOf(HttpStatus.valueOf(e.getRawStatusCode()).name()));
-//        }
-//        catch (URISyntaxException e){
-//            throw new ApiCustomException(HttpStatusEnum.INTERNAL_SERER_ERROR);
-//        }
     }
 
     public void setBigScale(String bigScale){
