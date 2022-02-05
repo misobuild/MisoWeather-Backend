@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtTokenProvider jwtTokenProvider;
-
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public BCryptPasswordEncoder encodePassword() {
@@ -45,15 +45,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http.authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/api/**").permitAll()
-                .antMatchers("/kakaoTestLogin/**").permitAll()
-                .antMatchers("/member/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/member").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/member/nickname").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/member/token").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/member/existence").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/comment").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/survey/answers/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/version").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/survey").permitAll()
+                .antMatchers("/api/region/**").permitAll()
+                .antMatchers("/api/forecast/**").permitAll()
+                .antMatchers("/api/new-forecast/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/v2/**").permitAll()
                 .antMatchers("/profile").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class);
     }
 }
