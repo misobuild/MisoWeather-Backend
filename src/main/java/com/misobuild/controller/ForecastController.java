@@ -58,4 +58,15 @@ public class ForecastController {
                 .message("생성 성공")
                 .build());
     }
+
+    @ApiOperation(value = "미세먼지")
+    @GetMapping("/api/new-forecast/airdust/{regionId}")
+    public ResponseEntity<ApiResponseWithData<CurrentAirDto>>
+    getAirDust(@PathVariable Long regionId) throws URISyntaxException {
+        return ResponseEntity.ok(ApiResponseWithData.<CurrentAirDto>builder()
+                .status(HttpStatusEnum.OK)
+                .message("생성 성공")
+                .data(weatherService.getAirDust(regionId))
+                .build());
+    }
 }
