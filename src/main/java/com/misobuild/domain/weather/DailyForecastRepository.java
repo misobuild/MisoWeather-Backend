@@ -9,8 +9,5 @@ import java.util.Optional;
 
 public interface DailyForecastRepository extends JpaRepository<DailyForecast, Long> {
     Optional<DailyForecast> findFirstByForecastTimeIsAfterAndRegion(LocalDateTime localDateTime, Region region);
-    List<DailyForecast> findTop7ByForecastTimeAfterAndRegion(LocalDateTime localDateTime, Region region);
-
-//    @Async
-//    public <S extends DailyForecast> List<S> saveAll(Iterable<S> entities);
+    List<DailyForecast> findByForecastTimeAfterAndRegionOrderByForecastTimeAsc(LocalDateTime localDateTime, Region region);
 }

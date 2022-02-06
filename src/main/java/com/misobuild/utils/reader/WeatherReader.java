@@ -16,6 +16,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -52,13 +58,23 @@ public class WeatherReader {
 
     public DailyForecastDto getDailyForecast(Region region){
         LocalDateTime pivotTime = LocalDateTime.now().minusHours(LocalDateTime.now().getHour());
-        List<DailyForecast> dailyForecastList = dailyForecastRepository.findTop7ByForecastTimeAfterAndRegion(pivotTime, region);
+        List<DailyForecast> dailyForecastList = dailyForecastRepository.findByForecastTimeAfterAndRegionOrderByForecastTimeAsc(pivotTime, region);
 
-        return DailyForecastDto.of(dailyForecastList, region);
+        List<DailyForecast> resultList = dailyForecastList.stream()
+                .filter(distinctByKey(DailyForecast::getForecastTime))
+                .limit(7L)
+                .collect(Collectors.toList());
+
+        return DailyForecastDto.of(resultList, region);
     }
 
     public CurrentAir getAirDust(Region region) throws URISyntaxException {
         airKoreaReader.configure(region);
         return airKoreaReader.getAirDust();
+    }
+
+    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 }
